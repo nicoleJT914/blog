@@ -1,6 +1,7 @@
 # module
 ## ES6模块的设计思想
 CommonJS： 运行时加载，只有运行时才能读取到模块对象及其方法
+
 ES6: 编译时加载（静态加载），比commonJS的加载效率高
 
 ## ES6模块的特点
@@ -12,6 +13,7 @@ ES6: 编译时加载（静态加载），比commonJS的加载效率高
 ## ES6模块语法
 ### export和import
 export:规定模块的对外接口
+
 import:输入其他模块提供的功能
 - export输出变量的格式
 ```
@@ -23,6 +25,7 @@ var foo = 'nicole'
 export {foo}
 ```
 export输出的接口是动态更新的，可以取到模块内部实时的值。（commonJS无法动态更新）
+
 export必须放到模块的顶层。
 
 - import
@@ -40,7 +43,9 @@ import {bar} from './foo'
 import * from './foo'
 ```
 大括号内的变量名必须与foo.js对外接口的变量名相同
+
 import命令具有提升效果，会提升到整个模块的头部，在编译阶段执行
+
 因此不能使用只有在运行时才能得到结果的语法结构，比如表达式和变量
 
 - export default
