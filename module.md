@@ -100,5 +100,5 @@ require.js解决的问题：
 }));
 ```
 
-
-
+## ES6 module
+见ES6学习笔记
