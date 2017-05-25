@@ -28,11 +28,77 @@ foo.say = function (){
 var foo = require('./foo.js');
 ```
 ### AMD
-- AMD的诞生
-CommonJS对客户端模块不适用，因为加载模块需要从服务端读取模块，有耗时
+#### AMD的诞生
+- CommonJS对客户端模块不适用，因为加载模块需要从服务端读取模块，有耗时
+- 加载模块同步的话，加载完成之前都不能继续下面的操作，会造成浏览器“假死”状态
+- AMD采用“异步加载asynchronous”,允许指定回调函数
+#### define()
+```
+// 依赖项（foo 和 bar）被映射为函数的参数
+define(['foo', 'bar'], function ( foo, bar ) {
+    // 返回一个定义了模块导出接口的值
 
-加载模块同步的话，加载完成之前都不能继续下面的操作，会造成浏览器“假死”状态
+    var myModule = {
+        doStuff:function(){
+            console.log('Yay! Stuff');
+        }
+    }
 
-AMD采用“异步加载asynchronous”,允许指定回调函数
+    return myModule;
+});
+```
+#### AMD的理念：依赖前置，依赖先执行
+优：依赖早运行可尽早发现错误，带来更好的用户体验
+
+缺：可能造成浪费，执行的依赖可能会没有用到
+
+#### require.js ==> 基于AMD规范的模块化方案
+#### require.js的诞生背景
+最原始的做法：所有要引入的模块放在同一个文件中
+如main.js:
+```
+<script src="a.js"></script>
+<script src="b.js"></script>
+<script src="c.js"></script>
+<script src="d.js"></script>
+```
+存在问题：
+- 加载脚本时，会停止渲染网页。脚本数很多时，会使浏览器较长时间内失去响应
+- 必须严格保证脚本的执行顺序，依赖性越大的脚本，放在越后面。难以维护
+
+require.js解决的问题：
+- 实现js文件的异步加载，避免网页失去响应
+- 管理模块之间的依赖性，便于代码的编写和维护
+
+#### require最佳实践
+- require.js加载的模块必须按照AMD规范来写。若要加载的模块不符合AMD规范，须在require.config()中进行配置
+- require.js每加载一个模块，就发出一个HTTP请求。r.js是require.js的一个优化工具，当模块部署完毕以后，可以用其将多个模块合并在一个文件中，减少HTTP请求数。
+
+### CMD
+通过 exports 暴露接口，通过 require 引入依赖。
+
+### UMD
+兼容了AMD和commonJS，同时还支持老式的“全局”变量规范
+```
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS之类的
+        module.exports = factory(require('jquery'));
+    } else {
+        // 浏览器全局变量(root 即 window)
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function ($) {
+    //    方法
+    function myFunc(){};
+ 
+    //    暴露公共方法
+    return myFunc;
+}));
+```
+
 
 
