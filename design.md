@@ -114,3 +114,48 @@ class Dog extends Animal {
 var dog = new Dog('Scamp')
 console.log(dog.getName() + ' says ' + dog.speak())
 ```
+
+### 闭包的一个应用
+```js
+var extent = function() {
+  var value = 0
+  return {
+    call: function(){
+      value++
+      console.log(value)
+    }
+  }
+}
+var extent = extent()
+extent.call() //1
+extent.call() //2
+extent.call() //3
+```
+改为面向对象的形式
+```js
+var extent = {
+  value: 0,
+  call: function(){
+      this.value++
+      console.log(this.value)
+    }
+}
+extent.call()
+extent.call()
+extent.call()
+```
+或构造函数+原型的形式
+```js
+var Extent = function(){
+  this.value = 0
+}
+Extent.prototype.call = function() {
+  this.value++
+  console.log(this.value)
+}
+var extent = new Extent()
+extent.call()
+extent.call()
+extent.call()
+```
+
