@@ -28,7 +28,7 @@ Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 ![image.png](http://upload-images.jianshu.io/upload_images/4952363-5f5e0b977f9f5bb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 path为/，则所有的子文件夹都可以匹配到
 - js可以通过`document.cookie`来访问cookie
-```
+```js
 document.cookie = "yummy_cookie=choco"; 
 document.cookie = "tasty_cookie=strawberry"; 
 console.log(document.cookie); 
@@ -36,7 +36,7 @@ console.log(document.cookie);
 ```
 - 客户端操作cookie
 封装的cookie方法：
-```
+```js
 function getCookie(key) {
   var s = document.cookie;
   var index = s.indexOf(key + '=');
@@ -55,8 +55,22 @@ $.cookie('name')
 ## cookie和session的区别
 HTTP是无状态的协议，所以服务端需要记录用户的状态时，就需要用某种机制来识具体的用户，这种机制叫做session
 
-session是在服务器，实现session需要session_id，
+session是在服务器，实现session需要session_id，session_id存在cookie中。
 
+## web storage
+- 两种机制：local storage（除非用户清除浏览数据，一直存在）和session storage（会话期间有效）
+```js
+localStorage.clear();
+localStorage.setItem('key', 'value');
+localStorage.getItem('key'); 
+localStorage.removeItem('key');
+```
+- 与Cookie一样，它们也受同源限制。某个网页存入的数据，只有同源下的文档才能读取。(摘自阮一峰)
+- 当本地存储的数据发生变化时，会触发storage事件。
+
+storage通过window对象触发，可以共享被改动存储的任何一个文档。可以通过这种机制，实现多个窗口之间的通信。
+
+storage事件不会在制造变化的文档内指派，只在其他同源文档里可用。
 
 参考：
 - [详说 Cookie, LocalStorage 与 SessionStorage](http://jerryzou.com/posts/cookie-and-web-storage/)
@@ -64,5 +78,4 @@ session是在服务器，实现session需要session_id，
 - [What is the difference between localStorage, sessionStorage, session and cookies?](https://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookies)
 - [COOKIE和SESSION有什么区别？](https://www.zhihu.com/question/19786827/answer/28752144?utm_medium=social&utm_source=wechat_session) 
 - 阮一峰
-- MDN
-- 
+- [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
