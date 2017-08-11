@@ -22,3 +22,33 @@ GET /sample_page.html HTTP/1.1
 Host: www.example.org
 Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 ```
+- 会话期cookie在关闭浏览器后自动删除，持久cookie可以设置有效时间/过期时间
+- domain和path指定了cookie的作用域，即需要发送cookie的URL集合
+![image.png](http://upload-images.jianshu.io/upload_images/4952363-5f5e0b977f9f5bb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+path为/，则所有的子文件夹都可以匹配到
+- js可以通过`document.cookie`来访问cookie
+```
+document.cookie = "yummy_cookie=choco"; 
+document.cookie = "tasty_cookie=strawberry"; 
+console.log(document.cookie); 
+// logs "yummy_cookie=choco; tasty_cookie=strawberry"
+```
+- 客户端操作cookie
+封装的cookie方法：
+```
+function getCookie(key) {
+  var s = document.cookie;
+  var index = s.indexOf(key + '=');
+  if (index == -1) return;
+  var start = index + key.length + 1;
+  var end = s.indexOf(';', index);
+  if (end == -1) end = s.length;
+  return s.substring(start, end);
+}
+```
+jquery-cookie插件
+```
+$.cookie('name')
+```
+
+## web storage
