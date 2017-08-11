@@ -80,10 +80,12 @@ cookies should not be used to store large amounts of information.Typically cooki
 As session data is completely controlled by your application (server side) it is the best place for anything sensitive or secure in nature.
 
 localStorage, sessionStorage and cookies are all subject to "same-origin" rules which means browsers should prevent access to the data except from the domain that set the information to start with.
-参考：
+
+参考,学习：
 - [详说 Cookie, LocalStorage 与 SessionStorage](http://jerryzou.com/posts/cookie-and-web-storage/)
 - [HTML5本地存储：SessionStorage, LocalStorage, Cookie](http://harttle.com/2015/08/16/localstorage-sessionstorage-cookie.html)
 - [What is the difference between localStorage, sessionStorage, session and cookies?](https://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookies)
 - [COOKIE和SESSION有什么区别？](https://www.zhihu.com/question/19786827/answer/28752144?utm_medium=social&utm_source=wechat_session) 
 - 阮一峰
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+- [静态资源（JS/CSS）存储在localStorage有什么缺点？为什么没有被广泛应用？](https://www.zhihu.com/question/28467444) 
