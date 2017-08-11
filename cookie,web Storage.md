@@ -23,6 +23,7 @@ Host: www.example.org
 Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 ```
 - 会话期cookie在关闭浏览器后自动删除，持久cookie可以设置有效时间/过期时间
+- secure属性表示只能在HTTPS下发送cookie，HttpOnly表示cookie不能被js读取
 - domain和path指定了cookie的作用域，即需要发送cookie的URL集合
 ![image.png](http://upload-images.jianshu.io/upload_images/4952363-5f5e0b977f9f5bb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 path为/，则所有的子文件夹都可以匹配到
