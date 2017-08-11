@@ -72,6 +72,14 @@ storage通过window对象触发，可以共享被改动存储的任何一个文�
 
 storage事件不会在制造变化的文档内指派，只在其他同源文档里可用。
 
+## 应用场景(SO)
+localStorage and sessionStorage are perfect for persisting non-sensitive data needed within client scripts between pages (for example: preferences, scores in games).
+
+cookies should not be used to store large amounts of information.Typically cookies are used to store identifying tokens for authentication, session and advertising tracking. The tokens are typically not human readable information in and of themselves, but encrypted identifiers linked to your application or database.
+
+As session data is completely controlled by your application (server side) it is the best place for anything sensitive or secure in nature.
+
+localStorage, sessionStorage and cookies are all subject to "same-origin" rules which means browsers should prevent access to the data except from the domain that set the information to start with.
 参考：
 - [详说 Cookie, LocalStorage 与 SessionStorage](http://jerryzou.com/posts/cookie-and-web-storage/)
 - [HTML5本地存储：SessionStorage, LocalStorage, Cookie](http://harttle.com/2015/08/16/localstorage-sessionstorage-cookie.html)
