@@ -42,21 +42,3 @@ callback返回的就是我们想要的数据
 cookie,sessionStorage,localStorage区别
 
 
-
-
-
-## XMLHttpRequest
-XMLHttpRequest是一个JS对象，它提供了一个通过 URL 来获取数据的简单方式，并且不会使整个页面刷新。
-
-XMLHttpRequest的属性：
-### onreadystatechange
-当readyState属性改变时会调用
-### readyState
-请求的5种状态：
-- 0(UNSET)：`open()`还未被调用
-- 1(OPENED)：`send()`还未被调用
-- 2(HEADERS_RECEIVED已获取响应头):send()方法已经被调用, 响应头和响应状态已经返回
-- 3(LOADING正在下载响应体)：响应体下载中; responseText中已经获取了部分数据
-- 4(DONE请求完成)：整个请求过程已经完毕
-### responseText
-
