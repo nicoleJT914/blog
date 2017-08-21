@@ -1,5 +1,6 @@
+关于XMLHttpRequest[你真的会使用XMLHttpRequest吗？](https://segmentfault.com/a/1190000004322487#articleHeader5)讲得很全了，基本上所有内容都涵盖到了，因为时间目前只能粗略了解下。
 ## XMLHttpRequest
-XMLHttpRequest是一个JS对象，它提供了一个通过 URL 来获取数据的简单方式，并且不会使整个页面刷新。
+XMLHttpRequest是一个浏览器提供的对象，它提供了一个通过 URL 来获取数据的简单方式，并且不会使整个页面刷新。
 
 XMLHttpRequest的属性：
 ### onreadystatechange
@@ -29,3 +30,70 @@ async默认为true，异步。
 发送请求.
 - `setRequestHeader(header, value)`
 给指定的HTTP请求头赋值
+## 手写ajax
+```js
+var httpRequest = new XMLHttpRequest()
+httpRequest.onreadstatechange = callback
+httpRequest.open('GET', url+'?'+query)
+httpRequest.send()
+
+// httpRequest.open('POST',url)
+// httpRequest.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+// httpRequest.send(query)
+
+function callback() {
+  if(httpRequest.readyState === 4) {
+    if(httpRequest.status === 200) {
+      var response = JSON.parse(httpRequest.responseText)
+      // ...do something
+    } else {
+      // ...do something
+    }
+  }
+}
+```
+## ajax封装
+```js
+function ajax(opts) {
+  var httpRequest = new httpRequest()
+  httpRequest.onreadstatechange = showRes
+  var data = opts.data
+  // 解析data
+  if (data) {
+    var query = ''
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        query += key+'='+data[key]+'&'
+      }
+    }
+    query = query.substr(0, query.legnth-1)
+  }
+  // makerequest
+  if (opts.type.toLowerCase() === 'get') {
+    httpRequest.open('GET', opts.url+'?'+query, true)
+    httpRequest.send()
+  }else {
+    httpRequest.open('POST', opts.url, true)
+    httpRequest.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+    httpRequest.send(query)
+  }
+  function showRes() {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var res = httpRequest.responseText
+        opts.success(res)
+      }else {
+        opts.error()
+      }
+    }
+  }
+}
+// usage
+ajax({
+  url: 'http://...',
+  type: 'GET',
+  data: {},
+  success: function(ret) {},
+  error: function() {}
+})
+```
