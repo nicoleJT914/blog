@@ -14,7 +14,7 @@ parser.origin   // 'http://site.com:81'
 ```
 [url.js](https://gist.github.com/jlong/2428561)
 
-网易笔试题：
+- 网易笔试题：
 
 写一个输出函数QuerySearch(),参数为key，输出其对应的value
 ```js
@@ -41,3 +41,7 @@ function parser(url, key) {
 }
 var val = parser(url, 'a')
 ```
+- 获取 url 中的参数
+1. 指定参数名称，返回该参数的值 或者 空字符串
+2. 不指定参数名称，返回全部的参数对象 或者 {}
+3. 如果存在多个同名参数，则返回数组
