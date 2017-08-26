@@ -1,4 +1,5 @@
 - Doctype作用? 严格模式与混杂模式如何区分？它们有何意义?
+
 参考博客：[DOCTYPE的作用：文档类型与浏览器模式](http://harttle.com/2016/01/22/doctype.html)
 
 DOCTYPE是用来声明文档类型和DTD规范的
