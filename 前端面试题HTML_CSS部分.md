@@ -11,3 +11,4 @@ DOCTYPE是用来声明文档类型和DTD规范的
 如果使用最新标准编写的页面但未给出DOCTYPE声明，这时就可能会出现一些怪异的行为。
 
 - HTML5有哪些新特性、移除了哪些元素？
+- [CSS动画](https://github.com/nicoleJT914/blog/blob/master/HTML5/CSS%E5%8A%A8%E7%94%BB.md)
