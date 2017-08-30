@@ -52,6 +52,30 @@ function callback() {
   }
 }
 ```
+用Promise写ajax
+```js
+function ajax(url) {
+  return new Promise(function(resolve, reject) {
+    var httpRequest = new XMLHttpRequest()
+    httpRequest.onreadstatechange = function() {
+      if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 200) {
+          resolve(httpRequest.responseText)
+        }else {
+          reject(new Error(httpRequest.responseText))
+        }
+      }
+    }
+    httpRequest.open('GET', url+'?'+query)
+    httpRequest.send()
+  })
+}
+ajax(url).then(function success(data) {
+  //...
+}).catch(function failure(error) {
+  //...
+}
+```
 ## ajax封装
 ```js
 function ajax(opts) {
@@ -97,3 +121,4 @@ ajax({
   error: function() {}
 })
 ```
+
