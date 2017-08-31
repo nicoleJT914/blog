@@ -202,3 +202,9 @@ Jquery的`$.ajax()`使用的就是JSONP来实现跨域，详细的可以看看�
 - CORS(cross-origin resouce sharing)
 它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。  
 
+### websocket
+websocket是一种通信协议，不实行同源策略，只要服务器支持，就可以跨域通信  
+
+websocket请求带有origin，因此服务器可以根据origin字段决定是否许可本次通信  
+
+### CORS(cross-origin resource sharing)
