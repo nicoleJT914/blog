@@ -148,7 +148,7 @@ iframe获取父窗口`window.parent.document.body`都会报错  
 若一级域名相同，可采用`document.domain`的方法  
 
 若是完全不同源  
-- fragment identifier  
+#### fragment identifier  
 `http://example.com/x.html#fragment`#后面是片段标识符  
 
 只改变片段标识符，网页不会刷新  
@@ -165,7 +165,7 @@ window.addEventListener('change', function() {
 // 子窗口改变父窗口的片段标识符
 parent.location.href = target + '#' + hash
 ```
-- window.name  
+#### window.name  
 `window.name`的特点是：无论是否同源，只有在同一个窗口里，一个网页设置`window.name`，另一个网页就可以进行读取  
 
 子窗口写入要传递的信息`window.name = 'hi'`  
@@ -178,7 +178,8 @@ parent.location.href = target + '#' + hash
 
 这种方法的优点是，window.name容量很大，可以放置非常长的字符串；缺点是必须监听子窗口window.name属性的变化，影响网页性能。
 
-- window.postMessage（cross-docuement messaging）
+#### window.postMessage（cross-docuement messaging）
+
 html5引入的新的API，`window.postMessage`允许跨窗口通信，无论两个窗口是否同源  
 `window.postMessage(data, origin(协议+域名+端口/*))`  
 
@@ -193,7 +194,7 @@ message事件的属性：
 通过postMessage也可读写其他窗口的localStorage  
 
 ### Ajax
-- JSONP  
+#### JSONP  
 JSONP的基本思想就是使用<script>标签向服务器请求JSON数据，服务器将JSON数据放在一个指定回调函数的参数中返回  
 JSONP只能发送`get`请求！
 
@@ -202,9 +203,9 @@ Jquery的`$.ajax()`使用的就是JSONP来实现跨域，详细的可以看看�
 - CORS(cross-origin resouce sharing)
 它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。  
 
-### websocket
+#### websocket
 websocket是一种通信协议，不实行同源策略，只要服务器支持，就可以跨域通信  
 
 websocket请求带有origin，因此服务器可以根据origin字段决定是否许可本次通信  
 
-### CORS(cross-origin resource sharing)
+#### CORS(cross-origin resource sharing)
