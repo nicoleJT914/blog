@@ -125,7 +125,8 @@ ajax({
 协议、域名、端口相同  
 CSS,JS加载不存在同源策略  
 
-## 跨域
+## 跨域  
+[浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
 ### cookie
 cookie只有同源网页才能共享  
 
@@ -209,3 +210,9 @@ websocket是一种通信协议，不实行同源策略，只要服务器支持�
 websocket请求带有origin，因此服务器可以根据origin字段决定是否许可本次通信  
 
 #### CORS(cross-origin resource sharing)
+
+它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。
+
+只要服务器实现了CORS接口，就可以跨源通信  
+
+[跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
