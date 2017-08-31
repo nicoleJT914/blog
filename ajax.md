@@ -177,3 +177,28 @@ parent.location.href = target + '#' + hash
 完成后将iframe关闭，释放内存，保证安全  
 
 这种方法的优点是，window.name容量很大，可以放置非常长的字符串；缺点是必须监听子窗口window.name属性的变化，影响网页性能。
+
+- window.postMessage（cross-docuement messaging）
+html5引入的新的API，`window.postMessage`允许跨窗口通信，无论两个窗口是否同源  
+`window.postMessage(data, origin(协议+域名+端口/*))`  
+
+通过`message`监听事件  
+`window.addeventListener('message', function() {})`  
+
+message事件的属性：  
+`message.source`:发送消息的窗口  
+`message.origin`:发送的网址  
+`message.data`:消息内容  
+
+通过postMessage也可读写其他窗口的localStorage  
+
+### Ajax
+- JSONP  
+JSONP的基本思想就是使用<script>标签向服务器请求JSON数据，服务器将JSON数据放在一个指定回调函数的参数中返回  
+JSONP只能发送`get`请求！
+
+Jquery的`$.ajax()`使用的就是JSONP来实现跨域，详细的可以看看以下这篇文章  
+[说说JSON和JSONP，也许你会豁然开朗，含jQuery用例](http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html)
+- CORS(cross-origin resouce sharing)
+它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。  
+
