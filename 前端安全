@@ -1,0 +1,27 @@
+## XSS(cross siting scripting)跨站脚本攻击
+注入攻击。当发布的内容中含有恶意脚本代码时，而服务器没有做任何处理，当用户访问到这个页面时，脚本就会开始执行进行一些危险或未授权的行为。  
+比如获取已登录账户的cookie信息（通常含有账户信息）
+
+example：你在博客发布一个带有<script>代码的文章，发布成功后，当用户浏览时，脚本执行，你就可以获得用户的cookie信息，然后将cookie发送给你。  
+
+防护方案：  
+`<`替换为`&lt`,`>`替换为`&gt`，后端替换比较好，前端替换影响性能  
+如果后端传回的数据一定要带html标签，一般可以借用一些现成的工具负责净化  
+另外页面展示数据时少用`innerHTML`,用`textContent`
+
+## CSRF(cross site request forgery)
+习惯上把通过 XSS 来实现的 CSRF 称为 XSRF  
+XSRF是通过伪造请求，冒充用户在站内的正常操作，即通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。  
+
+example：登录购物网站，浏览商品，网站付费接口是xxx.com/pay?id=100，但是没有验证=》收到一封邮件，隐藏着<img src='xxx.com/pay?id=100'>，因为已经处于登录状态，所以查看邮件，脚本执行，钱就没有啦  
+
+防护方案：  
+增加验证流程  
+
+对于数据库的更改操作（insert、update和delete），表单必须使用post请求。这是为了防止类似于在一个img和src里面写一个路径，让用户错误访问改动数据库的问题。  
+
+因为html表单的action是可以跨域提交的，用户在一个网站提交到另一个网站，可能他还不知情，这就需要确保用户的来源表单是可信的，一般的做法是在表单里面添加一段隐藏的唯一的token，像sessionId那样可以验明用户的身份，接收表单的同时确认这个token的有效性。
+
+资料：  
+- [前端开发中如何做到页面安全，防止 xss ，csrf 这样的欺骗及伪造？](https://www.zhihu.com/question/20142673)  
+- [总结 XSS 与 CSRF 两种跨站攻击](https://blog.tonyseek.com/post/introduce-to-xss-and-csrf/)
