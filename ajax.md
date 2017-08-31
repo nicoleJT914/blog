@@ -121,4 +121,47 @@ ajax({
   error: function() {}
 })
 ```
+## 同源策略
+协议、域名、端口相同  
+CSS,JS加载不存在同源策略  
 
+## 跨域
+### cookie
+cookie只有同源网页才能共享  
+若一级域名相同，而二级域名不相同，可以通过设置相同的`document.domain`来跨域  
+http://w1.example.cpm/a.html 和 http://w2.example.com/b.html 可以共同设置`document.domain='example.com'`  
+即可通过`document.cookie`来共享cookie了  
+
+另外，上述方式也可通过服务器设置cookie时实现`Set-Cookie:key=value; domain=example.com; path=/`,这样二三级域名不用再各自进行设置了
+
+！这种方法只适合cookie和iframe，localStorage和indexDB要通过postMessage来进行跨域  
+### iframe
+若父窗口与iframe不是同源  
+父窗口获取iframe`document.getElementById('myIframe').contentWindow.document`  
+iframe获取父窗口`window.parent.document.body`都会报错  
+若一级域名相同，可采用`document.domain`的方法  
+
+若是完全不同源  
+- fragment identifier  
+`http://example.com/x.html#fragment`#后面是片段标识符  
+只改变片段标识符，网页不会刷新  
+父窗口可以把信息写进iframe的片段标识符里  
+```js
+// 父窗口
+var src = OrigURL + '#' + data
+document.getElementById('myIframe').src = src
+// 子窗口
+window.addEventListener('change', function() {
+  var message = window.location.hash
+})
+// 子窗口改变父窗口的片段标识符
+parent.location.href = target + '#' + hash
+```
+- window.name  
+`window.name`的特点是：无论是否同源，只有在同一个窗口里，一个网页设置`window.name`，另一个网页就可以进行读取  
+子窗口写入要传递的信息`window.name = 'hi'`  
+父窗口创建一个iframe元素，将其src指向子窗口的src  
+父窗口监听iframe的load事件，就可以通过`iframe.contentWindow.name`来读取信息  
+完成后将iframe关闭，释放内存，保证安全  
+
+这种方法的优点是，window.name容量很大，可以放置非常长的字符串；缺点是必须监听子窗口window.name属性的变化，影响网页性能。
