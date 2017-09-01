@@ -89,3 +89,4 @@ localStorage, sessionStorage and cookies are all subject to "same-origin" rules 
 - 阮一峰
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
 - [静态资源（JS/CSS）存储在localStorage有什么缺点？为什么没有被广泛应用？](https://www.zhihu.com/question/28467444) 
+- [阮一峰indexDB](http://javascript.ruanyifeng.com/bom/indexeddb.html)
