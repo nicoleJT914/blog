@@ -124,6 +124,7 @@ ajax({
 ## 同源策略
 协议、域名、端口相同  
 CSS,JS加载不存在同源策略  
+[跨域全面总结](https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651552471&idx=1&sn=794c182bd4504930650beae83fc020aa&chksm=8025ad16b7522400df25d0156c4327123f21118e82ee71c5c6235513a2455819a3bb0e023f75&scene=0&key=41d2cdafcf8079a6ba98eaa9f7187baf50ddf3b8b2b6219810671c55d4a4c17098d6a9a0eeb95d262b6d503088bf73a031247853e4a96dc2b8f6a75c2f73eea838dcf0d85b9b2eac7e245084042d2bce&ascene=0&uin=MTM4NTE3MDA2MQ%3D%3D&devicetype=iMac+MacBookAir7%2C1+OSX+OSX+10.10.5+build(14F2009)&version=12020810&nettype=WIFI&fontScale=100&pass_ticket=5m46QDn4qW%2F12AzWoN95sBUiocqGgMWRQWlNAiCfUh28SwAc0zYx5MxDSnZIzPAK)
 
 ## 跨域  
 [浏览器同源政策及其规避方法](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
