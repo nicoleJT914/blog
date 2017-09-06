@@ -20,4 +20,4 @@
 资料：  
 - [浅谈HTTP中Get与Post的区别](http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html#3762804)  
 - [post 相比get 有很多优点，为什么现在的HTTP通信中大多数请求还是使用get？](https://www.zhihu.com/question/31640769)
-- [https://www.zhihu.com/question/28557115](https://www.zhihu.com/question/28557115) 
+- [怎样用通俗的语言解释REST，以及RESTful？](https://www.zhihu.com/question/28557115) 
