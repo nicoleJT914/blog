@@ -55,3 +55,38 @@ fill()
 `arc(x, y, radius, startAngle, endAngle, anticlockwise)`,`arcTo(x1, y1, x2, y2, radius)`  
 角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees。
 
+## Canvas & SVG
+[SVG 与 Canvas：如何选择](https://msdn.microsoft.com/zh-cn/library/gg193983(v=vs.85).aspx)  
+
+Canvas | SVG
+------ | ------
+基于像素（动态 .png） | 基于形状
+单个 HTML 元素 | 多个图形元素，这些元素成为 DOM 的一部分
+仅通过脚本修改 | 通过脚本和 CSS 修改
+事件模型/用户交互颗粒化 (x,y) | 事件模型/用户交互抽象化 (rect, path)
+图面较小时、对象数量较大 (>10k)（或同时满足这二者）时性能更佳 | 对象数量较小 (<10k)、图面更大（或同时满足这二者）时性能更佳
+
+### 从性能方面选择
+![xingneng](https://i-msdn.sec.s-msft.com/dynimg/IC628910.png)  
+随着屏幕大小的增大，画布将开始降级，因为需要绘制更多的像素。  
+随着屏幕上的对象数目增多，SVG 将开始降级，因为我们正不断将这些对象添加到 DOM 中。  
+
+### 高保真度的复杂矢量文档
+使用SVG，矢量图特性
+
+### 增强的 Web 图形
+SVG 另外还常用于简单图像，无论是应用程序还是网页中的图像，大图像还是小图像。由于 SVG 要加载到 DOM 中，或者创建图像前至少要进行解析，所以性能会稍微有所下降，但相比于呈现网页的成本（大约几毫秒），这种下降是极其微小。
+
+### 像素操作
+使用 Canvas 时可以获得快速的绘图速度，且不需要保留相应信息。  
+
+### 实时数据
+Canvas 非常适合输出实时数据  
+通过使用 Canvas API，可以在不影响 DOM 的情况下快速绘制（和擦除）这些对象。  
+
+![diff](https://i-msdn.sec.s-msft.com/dynimg/IC628922.png)  
+
+Canvas是使用JavaScript程序绘图(动态生成)，SVG是使用XML文档描述来绘图。  
+从这点来看：SVG更适合用来做动态交互，而且SVG绘图很容易编辑，只需要增加或移除相应的元素就可以了。  
+同时SVG是基于矢量的，所有它能够很好的处理图形大小的改变。  
+Canvas是基于位图的图像，它不能够改变大小，只能缩放显示；所以说Canvas更适合用来实现类似于Flash能做的事情(当然现在Canvas与Flash相比还有一些不够完善的地方)。
