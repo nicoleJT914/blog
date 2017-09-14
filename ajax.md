@@ -30,6 +30,47 @@ async默认为true，异步。
 发送请求.
 - `setRequestHeader(header, value)`
 给指定的HTTP请求头赋值
+
+## html5的XMLHttpRequest
+老版本的XMLHttpRequest的属性：  
+- `xhr.readyState`  
+- `xhr.status`  
+- `xhr.statusText` 
+- `xhr.responseText`  
+
+老版本的缺点：  
+- 只支持文本数据的传送，无法用来读取和上传二进制文件  
+- 传送和接收数据，没有进度信息  
+- 同源限制
+
+新版本特点：  
+- 可以设置HTTP请求的时限  
+```js
+xhr.timeout = 3000
+xhr.ontimeout = function(event) {
+  alert('请求超时')
+}
+```
+- 可以使用FormData对象管理表单数据  
+```js
+var formData = new formDate()
+formData.append('id', 123456)
+xhr.send(formData)
+```
+- 可以上传文件
+`formData.append('files[]', files[i])`
+- 可以请求不同于域名下的数据 
+CORS 
+- 可以获取服务端的二进制数据
+`xhr.responseType = 'blob'`
+- 可以获得数据传输的进度
+```js
+// 下载
+xhr.onprogress = fn
+// 上传
+xhr.upload.onprogress = fn
+```
+
 ## 手写ajax
 ```js
 var httpRequest = new XMLHttpRequest()
