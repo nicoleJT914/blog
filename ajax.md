@@ -243,7 +243,21 @@ JSONP只能发送`get`请求！
 
 Jquery的`$.ajax()`使用的就是JSONP来实现跨域，详细的可以看看以下这篇文章  
 [说说JSON和JSONP，也许你会豁然开朗，含jQuery用例](http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html)
-- CORS(cross-origin resouce sharing)
+
+### jsonp防止接口被滥用与接口的安全性问题
+安全性问题
+- callback参数注入
+严格控制Callback格式
+- DOM注入
+返回包体添加header头部，强制指定MIME类型，避免按HTML方式解析，防止XSS漏洞。
+
+防止JSONP资源被滥用
+- 来源refer白名单匹配
+验证是授权站点才可以访问JSONP资源。
+- cookieToken机制来限制
+服务器必须拿到cookie中存储的token信息，才允许访问JSONP资源。
+
+#### CORS(cross-origin resouce sharing)
 它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。  
 
 #### websocket
