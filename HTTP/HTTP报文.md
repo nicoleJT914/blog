@@ -116,5 +116,9 @@ HTTPS在应用层和传输层之间加入安全层SSL
 客户端与服务器的SSL握手：  
 交换协议版本号，选择密码，对两端身份进行验证，生成临时会话密钥
 
+![加密过程](http://mmbiz.qpic.cn/mmbiz/kn3fIZB16MoJ8WfwPrx6F6guQbjia7XlibwgWrFE7HmVfASugFhNQsDdzzT9GCqOwIIhAXafmoQ26G88TX0kv9wg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
+[HTTPS为什么安全 &分析 HTTPS 连接建立全过程](http://wetest.qq.com/lab/view/110.html)
+
 ## 在浏览器地址栏输入一个URL后回车，背后会进行哪些技术步骤？
 [What really happens when you navigate to a URL](http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/)
