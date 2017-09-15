@@ -52,6 +52,11 @@ jquery-cookie插件
 $.cookie('name')
 ```
 
+cookie的安全使用：
+- 使用HTTPonly
+- 当发送数据非常敏感时，使用Secure（仅使用HTTPS发送）
+- 谨慎设置domain,path属性，最小化授权
+
 ## cookie和session的区别
 HTTP是无状态的协议，所以服务端需要记录用户的状态时，就需要用某种机制来识具体的用户，这种机制叫做session
 
